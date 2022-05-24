@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+
+<scenario xmlns="http://www.github/cliffe/SecGen/scenario"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.github/cliffe/SecGen/scenario">
+
+	<type>ctf</type>
+	<difficulty>difficult</difficulty>
+
+	<system>
+		<system_name>web_server</system_name>
+		<base platform="linux" distro="Kali"/>
+
+    <input into_datastore="passwords">
+      <generator type="custom_list_password">
+        <input into="list_name">
+          <value>ncrackpassword.lst</value>
+        </input>
+      </generator>
+      <generator type="custom_list_password">
+        <input into="list_name">
+          <value>jtrpassword.lst</value>
+        </input>
+      </generator>
+    </input>
+
+    <vulnerability name="Crackable User Account"/>
+
+    <vulnerability module_path=".*/jtr_crackable_user_account.*">
+      <input into="password">
+        <datastore access="1">passwords</datastore>
+      </input>
+      <input into="flag_password">
+        <generator type="concat_flag_generator">
+          <input into="strings_to_join">
+            <datastore access="2">passwords</datastore>
+          </input>
+        </generator>
+      </input>
+      <input into="leaked_filenames">
+        <value>flag_here</value>
+      </input>
+      <input into="strings_to_leak">
+        <value>So, you think you are an expert huh? I wonder if you can figure out my password.</value>
+        <value>This account password is also a flag. For example, if the password is "123456" the flag is: flag{123456}</value>
+        <value>Here is a flag for finding this message:</value>
+        <generator type="flag_generator"/>
+      </input>
+    </vulnerability>
+
+    <vulnerability module_path=".*/ncrack_crackable_user_account.*">
+      <input into="password">
+        <datastore access="0">passwords</datastore>
+      </input>
+      <input into="flag_password">
+        <generator type="concat_flag_generator">
+          <input into="strings_to_join">
+            <datastore access="0">passwords</datastore>
+          </input>
+        </generator>
+      </input>
+      <input into="leaked_filenames">
+        <value>flag_here</value>
+      </input>			
+    	
+      <input into="strings_to_leak">
+        <encoder name="BASE64 Encoder">
+          <input into="strings_to_encode">
+            <value>So, you think you are an expert huh? I wonder if you can figure out my password.</value>
+            <value>This account password is also a flag. For example, if the password is "123456" the flag is: flag{123456}</value>
+            <value>Here is a flag for finding this message:</value>
+              <generator type="flag_generator"/>
+          </input>
+      </encoder>
+      </input>
+
+      <input into="account">
+        <generator type="account">
+          <input into="username">
+            <value>guest</value>
+          </input>
+        </generator>
+      </input>
+    </vulnerability>
+
+   
+
+  </system>
+
+</scenario>     

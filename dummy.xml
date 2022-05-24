@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<data>
+    <system>
+        <vulnerability name = "Crack Passwords"/>
+        <vulnerability type="reverse">
+            <input updated="yes">2</input>
+            <generator type = "encoder_diff">
+                <input into="strings_to_join">
+                    <datastore access="0">passwords</datastore>
+                </input>
+            </generator>
+            <encoder type="md5" />
+            <value>141100</value>
+        </vulnerability>
+
+        <vulnerability type="pwn">
+            <input updated="yes">5</input>
+            <generator>2011</generator>
+            <encoder type="sha256" direction="N"/>
+            <input into="strings_to_encode">
+                <value>So, you think you are an expert huh? I wonder if you can figure out my password.</value>
+                <value>This account password is also a flag. For example, if the password is "123456" the flag is: flag{123456}</value>
+                <value>Here is a flag for finding this message:</value>
+                <generator type="flag_generator"/>
+            </input>
+        </vulnerability>
+
+        <vulnerability type="pcap_file">
+            <input updated="yes">69</input>
+            <generator>2011</generator>
+            <encoder type="Base 64 encoder" />
+            <value>13600</value>     
+        </vulnerability>
+    </system>
+</data>
