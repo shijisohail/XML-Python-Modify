@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 
 ET.register_namespace("","http://www.github/cliffe/SecGen/scenario")
 ET.register_namespace("","http://www.w3.org/2001/XMLSchema-instance")
+ET.register_namespace("","http://www.github/cliffe/SecGen/scenario")
 pathM = 'sudo ruby secgen.rb -s scenarios/examples/vulnerability_examples/insecure_web_applications/commando/'
 newfile = ("Updated.xml")
 tree = ET.parse('custom.xml')
@@ -23,10 +24,9 @@ def vuln():
     for x in root.findall(".//{http://www.github/cliffe/SecGen/scenario}vulnerability"):
         print(x.tag,"--->",x.attrib) 
             
-    ch = input('\nEnter Tag you want to display : ')
-    for x in root.findall(".//{http://www.github/cliffe/SecGen/scenario}vulnerability[@module_path={}]".format(ch)):
-        print(x.tag,"--->",x.attrib) # To display selected Ta
-        
+    ch = input('\nEnter Tag you want to change : ')
+    for x in root.findall(f".//{{http://www.github/cliffe/SecGen/scenario}}vulnerability[@module_path='{ch}']"):
+        print("Tag you want to change ",x.tag,"--->",x.attrib) # To display selected Ta
         changes = str(input('\nEnter Your changed tag : '))
         x.attrib['module_path'] = f'{changes}'
         
@@ -108,4 +108,4 @@ while x!=0:
     else:
         print("\nInvalid Choice")
         
-# os.write(pathM)
+# os.write(pathM+)
