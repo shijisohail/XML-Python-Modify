@@ -4,8 +4,6 @@ import xml.etree.ElementTree as ET
 
 ET.register_namespace("","http://www.github/cliffe/SecGen/scenario")
 ET.register_namespace("","http://www.w3.org/2001/XMLSchema-instance")
-ET.register_namespace("","http://www.github/cliffe/SecGen/scenario")
-
 pathM = 'sudo ruby secgen.rb -s scenarios/examples/vulnerability_examples/insecure_web_applications/commando/'
 newfile = ("Updated.xml")
 tree = ET.parse('custom.xml')
