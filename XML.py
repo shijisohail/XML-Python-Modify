@@ -10,7 +10,7 @@ ET.register_namespace("","http://www.w3.org/2001/XMLSchema-instance")
 ET.register_namespace("","http://www.github/cliffe/SecGen/scenario")
 pathM = 'sudo ruby secgen.rb -s scenarios/examples/vulnerability_examples/insecure_web_applications/commando/'
 newfile = ("Updated.xml")
-tree = ET.parse('custom.xml')
+tree = ET.parse('impossible.xml')
 root = tree.getroot()
 
 def load():
@@ -31,7 +31,7 @@ def load():
     t.start()
 
     #long process here
-    time.sleep(5)
+    time.sleep(2)
     done = True
 #!ET
 
@@ -67,6 +67,7 @@ def encoders():
         print("Tag you want to change ",x.tag,"--->",x.attrib) # To display selected Ta
         changes = str(input('\nEnter Your changed tag : '))
         x.attrib['name'] = f'{changes}'
+    load()
     tree.write(newfile)
  
  
@@ -81,7 +82,7 @@ def generator():
         print("Tag you want to change ",x.tag,"--->",x.attrib) # To display selected Ta
         changes = str(input('\nEnter Your changed tag : '))
         x.attrib['type'] = f'{changes}'
-        
+    load()  
     tree.write(newfile)
     
     
@@ -95,7 +96,7 @@ def input1():
         print("Tag you want to change ",x.tag,"--->",x.attrib) # To display selected Ta
         changes = str(input('\nEnter Your changed tag : '))
         x.attrib['into'] = f'{changes}'
-        
+    load()   
     tree.write(newfile)
         
 def dataStore():
@@ -108,7 +109,7 @@ def dataStore():
         print("Tag you want to change ",x.tag,"--->",x.attrib) # To display selected Ta
         changes = str(input('\nEnter Your changed tag : '))
         x.attrib['access'] = f'{changes}'
-        
+    load()    
     tree.write(newfile)
 def mainProg():
     print("""   
@@ -117,7 +118,8 @@ def mainProg():
         Enter 3 for Encoders
         Enter 4 for Generators
         Enter 5 for Input
-        Enter 6 to display all the tree
+        Enter 6 for Data Stores
+        Enter 7 to display all the tree
         """)
 
     x = 1000
@@ -135,10 +137,13 @@ def mainProg():
         elif x==5:
             input1()
         elif x==6:
+             dataStore()
+        elif x==7:
             ET.dump(tree)
         else:
             print("\nInvalid Choice")
             
-    # os.write(pathM+)
 
 mainProg()
+load()
+# os.system(pathM+NewFile)
