@@ -71,34 +71,42 @@ def input1():
         x.attrib['into'] = f'{changes}'
         
     tree.write("Updated.xml")
-        
 
-print("""   
-    Enter 1 to Display All TAGS ATTRIBUTES and TEXTS
-    Enter 2 for Vulnerabilities
-    Enter 3 for Encoders
-    Enter 4 for Values
-    Enter 5 for Input
-    Enter 6 to display all the tree
-    """)
+def valuetag():
+    for x in root.findall(".//value"):
+        print(x.tag,"--->",x.text) # To display selected Ta
+        changes = str(input('\nEnter the tag you want to change : '))
+        x.text = f'{changes}'
+        print(x.text)
 
-x = 1000
+# print("""   
+#     Enter 1 to Display All TAGS ATTRIBUTES and TEXTS
+#     Enter 2 for Vulnerabilities
+#     Enter 3 for Encoders
+#     Enter 4 for Values
+#     Enter 5 for Input
+#     Enter 6 to display all the tree
+#     """)
 
-while x!=0:
-    x = int(input("\nYour Choice  : "))
-    if x==1:
-        printAllbyET()
-    elif x==2:
-        vuln()
-    elif x==3:
-        encoders()
-    elif x==4:
-        value()
-    elif x==5:
-        input1()
-    elif x==6:
-        ET.dump(tree)
-    else:
-        print("\nInvalid Choice")
+# x = 1000
+
+# while x!=0:
+#     x = int(input("\nYour Choice  : "))
+#     if x==1:
+#         printAllbyET()
+#     elif x==2:
+#         vuln()
+#     elif x==3:
+#         encoders()
+#     elif x==4:
+#         value()
+#     elif x==5:
+#         input1()
+#     elif x==6:
+#         ET.dump(tree)
+#     else:
+#         print("\nInvalid Choice")
         
 # os.write(pathM)
+valuetag()
+tree.write("Updated.xml")

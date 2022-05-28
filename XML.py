@@ -40,7 +40,6 @@ def printAllbyET():
         print(x.tag,"|--->",x.attrib,x.text)
 
 def vuln():
-    
     print("\n\n******************Vulnerabilities*****************\n\n")
     for x in root.findall(".//{http://www.github/cliffe/SecGen/scenario}vulnerability"):
         print(x.tag,"--->",x.attrib) 
@@ -174,6 +173,15 @@ def chngType():
         load()
     tree.write(newfile)
 
+def difficulty():
+    for x in root.findall(".//{http://www.github/cliffe/SecGen/scenario}difficulty"):
+        print(x.tag,"--->",x.text) # To display selected Ta
+        changes = str(input('\nEnter the value you want to change : '))
+        x.text = f'{changes}'
+        print(x.text)
+        load()
+    tree.write(newfile)
+    
 def mainProg():
     print(colored("""   
         Enter 1 to Display All TAGS ATTRIBUTES and TEXTS
@@ -185,6 +193,7 @@ def mainProg():
         Enter 7 for Networks
         Enter 8 to display all the tree
         Enter 9 for type
+        Enter 11 for dificulty
         """,'yellow', attrs=['bold']))
     x = None
     while x!=0:
@@ -207,6 +216,8 @@ def mainProg():
             ET.dump(tree)
         elif x==9:
             chngType()
+        elif x==11:
+            difficulty()
         else:
             print("\nInvalid Choice",'red', attrs=['bold'])
             
