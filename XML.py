@@ -20,15 +20,15 @@ def load():
         for c in itertools.cycle(['|', '/', '-', '\\']):
             if done:
                 break
-            sys.stdout.write('\rloading ' + c)
+            sys.stdout.write('\nloading ' + c)
             sys.stdout.flush()
             time.sleep(0.1)
-        sys.stdout.write('\rDone!     ')
+        sys.stdout.write('\nDone!')
         
 
     t = threading.Thread(target=animate)
     t.start()
-    
+
     #long process here
     time.sleep(2)
     done = True
@@ -224,4 +224,4 @@ def mainProg():
 
 mainProg()
 load()
-# os.system(pathM+NewFile)
+os.system(pathM+newfile)

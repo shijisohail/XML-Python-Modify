@@ -6,7 +6,7 @@
 
   <type>ctf</type>
   <type>attack-ctf</type>
-  <difficulty>medium</difficulty>
+  <difficulty>impossible</difficulty>
 
   <system>
     <system_name>web_server</system_name>
@@ -17,7 +17,7 @@
       <value>172.10.0.3</value>
     </input>
 
-  <vulnerability module_path=".*commando">
+  <vulnerability module_path="prani">
 
     <input into="verbose_error_deactivation">
       <value>true</value>
