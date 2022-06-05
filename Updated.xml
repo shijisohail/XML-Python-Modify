@@ -13,7 +13,7 @@
     <base type="server" distro="Debian 9" />
 
     <input into_datastore="IP_addresses">
-      <value>172.10.0.2</value>
+      <value>172.10.0.1</value>
       <value>172.10.0.3</value>
     </input>
 
